@@ -14,10 +14,12 @@ const createCardFunction = () => {
         create.innerHTML = '<img src="resources/images/CardBack.png" alt="card">';
         cardNo ++;
         create.id = cardNo;
+        create.addEventListener('click', flipCard);
         table.appendChild(create);
+        
     }
     createIt();
-    createIt();cd 
+    createIt(); 
 }
 
 createCard.addEventListener('click', createCardFunction);
