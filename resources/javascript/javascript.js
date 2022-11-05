@@ -27,6 +27,7 @@ let cardImages = allocateImages();
 
 
 const flipCard = event => {
+    createCard.style.display = 'none';
     let thisCardId;
     if (event.target.parentNode.id == 'table') {
         thisCardId = event.target.id;
@@ -69,8 +70,6 @@ function createIt() {
     create.id = cardNo;
     table.appendChild(create);
     cards.push(cardNo);
-    addListener();
-    cardImages = allocateImages();
 }
 
 function addListener() {
@@ -79,7 +78,12 @@ function addListener() {
     })
 }
 
-createCard.addEventListener('click', createIt);
+createCard.addEventListener('click', function(){
+    createIt();
+    createIt();
+    addListener();
+    cardImages = allocateImages();
+});
 
 const card1 = document.getElementById('1');
 const card2 = document.getElementById('2');
