@@ -8,7 +8,6 @@ let cardImagesArray = ['bird.png','butterfly.png','cat.png','chook.png','crab.pn
 const allocateImages = arr => {
     let neededImages = [];
     let test = [];
-    console.log(cardNo);
     for (i=0; i < cardNo; i++) {
         let access = Math.floor(i/2);
         neededImages.push('resources/images/cards/' + cardImagesArray[access]); 
@@ -37,20 +36,29 @@ const flipCard = event => {
     }
     let thisCard = document.getElementById(thisCardId);
     let thisCardsImage = thisCard.childNodes[0];
-
+    
     if (flippedCards.length < 2) {
         if (thisCardsImage.src.includes("resources/images/CardBack.png")) {
             thisCardsImage.src = cardImages[thisCardId-1];
             flippedCards.push(thisCardId);
         } 
-    } 
-    else {
-        console.log(document.getElementById(flipCard[0])); //HOW DO I CONVERT THIS TO A STRING?????!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        document.getElementById(flipCard[0]).innerHTML = '<img src="resources/images/CardBack.png" alt="card">';
-        document.getElementById(flipCard[1].toString()).innerHTML = '<img src="resources/images/CardBack.png" alt="card">';
+    }  
+    
+    if (flippedCards.length >= 2) {
+    if (document.getElementById(flippedCards[0].toString()).innerHTML === document.getElementById(flippedCards[1].toString()).innerHTML) {
         flippedCards = [];
     }
+    else {
+        setTimeout(function() {
+            document.getElementById(flippedCards[0].toString()).innerHTML = '<img src="resources/images/CardBack.png" alt="card">';
+            document.getElementById(flippedCards[1].toString()).innerHTML = '<img src="resources/images/CardBack.png" alt="card">';
+            flippedCards = [];
+        }, 1000);
+    }
+    }
     
+    
+    console.log(flippedCards + ' ' + flippedCards.length);
 }
 
 function createIt() {
