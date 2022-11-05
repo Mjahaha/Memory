@@ -31,11 +31,13 @@ html {
     background-color: rgb(95, 55, 55);
     width: 75%;
     height: auto;
-    min-height: 400px;
+    min-height: 200px;
     border-radius: 35px;
     display: flex;
     flex-wrap: wrap;
-    padding: 70px;
+    padding: 15px 30px;
+    position: absolute;
+    bottom: 0px;
 }
 
 .card {
@@ -48,6 +50,11 @@ html {
     text-align: center;
     cursor: pointer;
     transition: all 200ms ease-out;
+}
+
+.card img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .cardStart {

@@ -1,46 +1,58 @@
 const wholeDoc = document.body;
 const createCard = document.getElementById('createCard');
 let cardNo = 2;
+let cards =[1,2];
+let flippedCards = [];
 
-const flipCard = (id) => {
-    console.log(id);
-    let theCard = document.getElementById(id);
-    console.log(theCard.innerHTML);
-    if (theCard.innerHTML === '1') {
-        theCard.innerHTML = '<img src="resources/images/CardBack.png" alt="card">';
-    } else {
-        theCard.innerHTML = '1';
+
+const flipCard = event => {
+    console.log(event.target.src);
+    
+    let thisCardId;
+    if (event.target.parentNode.id == 'table') {
+        thisCardId = event.target.id;
     }
-    console.log(theCard.innerHTML);
+    else {
+        thisCardId = event.target.parentNode.id;
+    }
+    let thisCard = document.getElementById(thisCardId);
+    let thisCardsImage = thisCard.childNodes[0];
+    flippedCards.push(thisCardId)
+
+
+    if (thisCardsImage.src.includes("resources/images/CardBack.png")) {
+        thisCardsImage.src = 'resources/images/cards/sheep.jpg';
+    } 
+    else {
+        thisCardsImage.src = 'resources/images/CardBack.png';
+    }
+    
 }
 
-const createCardFunction = () => {
-    function createIt() {
-        let create = document.createElement('div');
-        create.className = 'card';
-        create.innerHTML = '<img src="resources/images/CardBack.png" alt="card">';
-        cardNo ++;
-        create.id = cardNo;
-        table.appendChild(create);
-        
-    }
-
-    function addListener() {
-        let card = document.getElementById(cardNo); 
-        card.addEventListener('click', flipCard(cardNo));
-        console.log('I did it!');
-    }
-
-    createIt();
-    addListener()
-    createIt(); 
-    addListener()
+function createIt() {
+    let create = document.createElement('div');
+    create.className = 'card';
+    create.innerHTML = '<img src="resources/images/CardBack.png" alt="card">';
+    cardNo ++;
+    create.id = cardNo;
+    table.appendChild(create);
+    cards.push(cardNo);
+    console.log(cards);
+    addListener();
 }
 
-createCard.addEventListener('click', createCardFunction);
+function addListener() {
+    cards.forEach(cardId => {
+        document.getElementById(cardId).addEventListener('click', flipCard);
+    })
+    console.log('Listeners added. I did it!');
+}
+
+createCard.addEventListener('click', createIt);
 
 const card1 = document.getElementById('1');
 const card2 = document.getElementById('2');
-card1.onclick = flipCard(card1.id);  
-//card1.addEventListener('click', flipCard(card1.id));
-card2.addEventListener('click', flipCard(card2.id));
+//card1.onclick = flipCard;  
+card1.addEventListener('click', flipCard);
+card2.addEventListener('click', flipCard);
+console.log(card1);
