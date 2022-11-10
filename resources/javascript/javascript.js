@@ -3,7 +3,7 @@ const createCard = document.getElementById('createCard');
 let cardNo = 2;
 let cards =[1,2];
 let flippedCards = [];
-let cardImagesArray = ['bird.png','butterfly.png','cat.png','chook.png','crab.png','dog.jpg','frog.jpg','mouse.jpg','penguin.jpg','sheep.jpg','whale.jpg'];
+let cardImagesArray = ['bird.png','butterfly.png','cat.png','chook.png','crab.png','dog.jpg','frog.jpg','mouse.jpg','penguin.png','sheep.jpg','whale.png'];
 
 const allocateImages = arr => {
     let neededImages = [];
@@ -57,9 +57,14 @@ const flipCard = event => {
         }, 1000);
     }
     }
-    
-    
-    console.log(flippedCards + ' ' + flippedCards.length);
+    for (i = 0; i < cardNo; i++) {
+        if (document.getElementById(cards[i].toString()).innerHTML === '<img src="resources/images/CardBack.png" alt="card">') {
+            break;
+        }
+        if (i >= cardNo - 1) {
+            document.getElementById("winner").style.display = 'block';
+        }
+    } 
 }
 
 function createIt() {
@@ -83,6 +88,9 @@ createCard.addEventListener('click', function(){
     createIt();
     addListener();
     cardImages = allocateImages();
+    if (cardNo >= 22) {
+        createCard.style.display = 'none';
+    }
 });
 
 const card1 = document.getElementById('1');

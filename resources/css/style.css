@@ -27,6 +27,15 @@ html {
     height: auto;
 }
 
+h1 {
+    display: block;
+    text-align: center;
+    line-height: 30%;
+    color: wheat;
+    display: none;
+}
+
+
 #table {
     background-color: rgb(95, 55, 55);
     width: 75%;
